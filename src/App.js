@@ -5,7 +5,7 @@ This is the top-level component of the app.
 It contains the top-level state.
 ==================================================*/
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 // Import other components
 import Home from './components/Home';
@@ -34,6 +34,46 @@ class App extends Component {
     newUser.userName = logInInfo.userName;
     this.setState({currentUser: newUser})
   }
+
+
+
+  // // Update state's accountBalance after "Credit" or "Debit" button is clicked
+  // addCredit = (credit) => {
+  //   let newBalance = this.state.accountBalance + credit.amount;
+  //   this.setState({
+  //     accountBalance: newBalance
+  //   });
+  // }
+
+  // addDebit = (debit) => {
+  //   let newBalance = this.state.accountBalance - debit.amount;
+  //   this.setState({
+  //     accountBalance: newBalance
+  //   });
+  // }
+
+
+  // // Fetch credit and debit data from API
+  // componentDidMount() {
+  //   fetch('https://johnnylaicode.github.io/api/credits.json')
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       this.setState({creditList: data})
+  //     })
+  //     .catch((error) => console.log(error));
+
+  //   fetch('https://johnnylaicode.github.io/api/debits.json')
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       this.setState({debitList: data})
+  //     })
+  //     .catch((error) => console.log(error));
+
+  // }
+
+  
+
+
 
   // Create Routes and React elements to be rendered using React components
   render() {  
