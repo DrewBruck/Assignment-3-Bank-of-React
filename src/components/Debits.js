@@ -25,7 +25,7 @@ const Debits = (props) => {
 
   // Handle form submission
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); //prevents the form from submitting on page reload
     const newDebitWithDate = {
       ...newDebit,
       date: new Date().toISOString()
@@ -39,28 +39,28 @@ const Debits = (props) => {
   const debitsGrid = () => {
     return (
       <div className="d-flex">
-      <div className="debits-grid">
-        <div className="debit-row">
-          <div className="debit-column">
-            <p><b><u>Amount</u></b></p>
-            {debits.map((debit, index) => (
-              <p key={index}>{debit.amount}</p>
-            ))}
-          </div>
-          <div className="debit-column">
-            <p><b><u>Description</u></b></p>
-            {debits.map((debit, index) => (
-              <p key={index}>{debit.description}</p>
-            ))}
-          </div>
-          <div className="debit-column">
-            <p><b><u>Date</u></b></p>
-            {debits.map((debit, index) => (
-              <p key={index}>{debit.date.slice(0, 10)}</p>
-            ))}
+        <div className="debits-grid">
+          <div className="debit-row">
+            <div className="debit-column">
+              <p><b><u>Amount</u></b></p>
+              {debits.map((debit, index) => (
+                <p key={index}>{debit.amount}</p>
+              ))}
+            </div>
+            <div className="debit-column">
+              <p><b><u>Description</u></b></p>
+              {debits.map((debit, index) => (
+                <p key={index}>{debit.description}</p>
+              ))}
+            </div>
+            <div className="debit-column">
+              <p><b><u>Date</u></b></p>
+              {debits.map((debit, index) => (
+                <p key={index}>{debit.date.slice(0, 10)}</p>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
       </div>
     );
   };
