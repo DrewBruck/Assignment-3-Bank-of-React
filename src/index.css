@@ -16,3 +16,25 @@ code {
 input, button {
 	margin: 5px;
 }
+
+.d-flex {
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  
+}
+
+.debits-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.debit-row {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.debit-column {
+  padding: 5px;
+  border: 1px solid #ccc;
+  width: max-content;
+}
