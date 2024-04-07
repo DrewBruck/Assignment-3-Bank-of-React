@@ -5,7 +5,7 @@ This is the top-level component of the app.
 It contains the top-level state.
 ==================================================*/
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 // Import other components
 import Home from './components/Home';
@@ -18,7 +18,7 @@ class App extends Component {
   constructor() {  // Create and initialize state
     super(); 
     this.state = {
-      accountBalance: 1234567.89,
+      accountBalance: 0,
       creditList: [],
       debitList: [],
       currentUser: {
@@ -28,12 +28,69 @@ class App extends Component {
     };
   }
 
+  updateCreditList = (newCredit) => {
+    this.setState({
+      creditList: [...this.state.creditList, newCredit]
+    });
+  }
+
+  updateBalance = (newBalance) => {
+    this.setState({
+      accountBalance: newBalance
+    });
+  }
+
+  calculateAccountBalance = () => {
+    const totalCredits = this.state.creditList.reduce((totalCredits, credit) => totalCredits + credit.amount, 0);
+    const totalDebits = this.state.debitList.reduce((totalDebits, debit) => totalDebits + debit.amount, 0);
+    return totalCredits - totalDebits;
+  }
+
   // Update state's currentUser (userName) after "Log In" button is clicked
   mockLogIn = (logInInfo) => {  
     const newUser = {...this.state.currentUser};
     newUser.userName = logInInfo.userName;
     this.setState({currentUser: newUser})
   }
+
+
+
+  // Update state's accountBalance after "Credit" or "Debit" button is clicked
+  addCredit = (credit) => {
+    let newBalance = this.state.accountBalance + credit.amount;
+    this.setState({
+      accountBalance: newBalance
+    });
+  }
+
+  addDebit = (debit) => {
+    let newBalance = this.state.accountBalance - debit.amount;
+    this.setState({
+      accountBalance: newBalance
+    });
+  }
+
+
+  // Fetch credit and debit data from API
+  componentDidMount() {
+    fetch('https://johnnylaicode.github.io/api/credits.json')
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({creditList: data})
+      }).then(() => {
+        fetch('https://johnnylaicode.github.io/api/debits.json')
+        .then((response) => response.json())
+        .then((data) => {
+          this.setState({debitList: data}, () => {
+            this.calculateAccountBalance()})
+          })
+      });
+
+  }
+
+  
+
+
 
   // Create Routes and React elements to be rendered using React components
   render() {  
