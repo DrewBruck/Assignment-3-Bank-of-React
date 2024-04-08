@@ -19,12 +19,13 @@ function Credits(props) {
   const addCredit = (e) => {
     e.preventDefault();
     const updatedAmount = parseFloat(amount);
-    const updatedBalance = balance + updatedAmount;
-    // updateBalance(updatedBalance);
+    const totalCredits = credits.reduce((totalCredits, credit) => totalCredits + credit.amount, 0);
+    // const totalDebits = debits.reduce((totalDebits, debit) => totalDebits + debit.amount, 0);
+    const updatedBalance = totalCredits + updatedAmount;
     const newCredit = {
       id: credits.length + 1,
       description: description,
-      amount: parseFloat(amount),
+      amount: updatedAmount,
       date: new Date()
     };
     updateCreditList(newCredit);
@@ -56,13 +57,13 @@ function Credits(props) {
         <br/>
         <br/>
         <div className='add-credit'>
-          <h3>Add Credit</h3>
+          <h2>Add Credit</h2>
           <input type='text' placeholder='Description' id='description' onChange={(e) => setDescription(e.target.value)}/>
           <input type='number' placeholder='Amount' id='amount' onChange={(e) => setAmount(e.target.value)}/>
           <button onClick={addCredit}>Add Credit</button>
           <br/>
           <br/>
-          <AccountBalance accountBalance={balance}/>
+          <AccountBalance AccountBalance={balance}/>
         </div>
         <br/>
         <br/>
