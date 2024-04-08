@@ -7,7 +7,6 @@ Note: You need to work on this file for the Assignment.
 import {Link} from 'react-router-dom';
 import AccountBalance from './AccountBalance';
 import React, {useState} from 'react';
-// import './Credits.css';
 
 
 
@@ -20,16 +19,17 @@ function Credits(props) {
   const addCredit = (e) => {
     e.preventDefault();
     const updatedAmount = parseFloat(amount);
-    const updatedBalance = balance + updatedAmount;
-    updateBalance(updatedBalance);
+    const totalCredits = credits.reduce((totalCredits, credit) => totalCredits + credit.amount, 0);
+    // const totalDebits = debits.reduce((totalDebits, debit) => totalDebits + debit.amount, 0);
+    const updatedBalance = totalCredits + updatedAmount;
     const newCredit = {
       id: credits.length + 1,
       description: description,
-      amount: parseFloat(amount),
+      amount: updatedAmount,
       date: new Date()
     };
     updateCreditList(newCredit);
-    // updateBalance(updatedBalance);
+    updateBalance(updatedBalance);
 
     //Clear input fields after adding credit
     setDescription('');
@@ -43,30 +43,33 @@ function Credits(props) {
       <h1>Credits</h1>
       <ul style={{listStyle: 'none', paddingLeft: 0, textAlign: 'center'}}>
         {credits.map((credit) => (
-          // return (
-            <li key={credit.id}>
-              <div className='credit-item'>
+          <li key={credit.id}>
+            <div className='credit-item'>
               <strong>Description:</strong> {credit.description} <br/>
               <strong>Amount:</strong> ${parseFloat(credit.amount).toFixed(2)}<br/>
               <strong>Date:</strong> {new Date(credit.date).toISOString().split('T')[0]} <br/>
               <br/>
-              </div>
-            </li>
-            ))}
-      </ul>
-      <br/>
-      <AccountBalance accountBalance={balance}/>
-      <div className='add-credit'>
-        <h3>Add Credit</h3>
-        {/* <form onSubmit={addCredit}> */}
-          <label htmlFor='description'><strong>Description:</strong></label>
+            </div>
+          </li>
+        ))}
+
+        </ul>
+        <br/>
+        <br/>
+        <div className='add-credit'>
+          <h2>Add Credit</h2>
           <input type='text' placeholder='Description' id='description' onChange={(e) => setDescription(e.target.value)}/>
-          <label htmlFor='amount'><strong>Amount:</strong></label>
           <input type='number' placeholder='Amount' id='amount' onChange={(e) => setAmount(e.target.value)}/>
           <button onClick={addCredit}>Add Credit</button>
-          </div>
+          <br/>
+          <br/>
+          <AccountBalance AccountBalance={balance}/>
+        </div>
         <br/>
-      <Link to="/">Return to Home</Link>
+        <br/>
+        <br/>
+
+        <Link to="/">Return to Home</Link>
     </div>
   );
 }

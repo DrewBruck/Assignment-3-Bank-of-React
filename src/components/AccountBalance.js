@@ -44,6 +44,8 @@ class AccountBalance extends Component {
     return balance;
   };
 
+  
+
   render() {
     const { loading } = this.state;
 
@@ -55,7 +57,11 @@ class AccountBalance extends Component {
 
     return (
       <div>
+<<<<<<< HEAD
+        <h2>Account Balance: ${balance}</h2>
+=======
         <h3>Account Balance: ${balance}</h3>
+>>>>>>> main
       </div>
     );
   }
