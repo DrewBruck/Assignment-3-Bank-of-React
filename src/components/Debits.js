@@ -113,7 +113,7 @@ const Debits = (props) => {
       
       {finalBalance !== null && (
         <div>
-          <h2>Account Balance: {finalBalance}</h2>
+          <h2>Account Balance: {finalBalance.toFixed(2)}</h2>
         </div>
       )}
       
