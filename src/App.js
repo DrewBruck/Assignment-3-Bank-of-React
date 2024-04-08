@@ -76,7 +76,8 @@ class App extends Component {
     fetch('https://johnnylaicode.github.io/api/credits.json')
       .then((response) => response.json())
       .then((data) => {
-        this.setState({creditList: data})
+        this.setState({creditList: data}, () => {
+          this.calculateAccountBalance()})
       }).then(() => {
         fetch('https://johnnylaicode.github.io/api/debits.json')
         .then((response) => response.json())
@@ -85,6 +86,7 @@ class App extends Component {
             this.calculateAccountBalance()})
           })
       });
+
 
   }
 
@@ -100,7 +102,12 @@ class App extends Component {
       <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince} />
     )
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />)
-    const CreditsComponent = () => (<Credits credits={this.state.creditList} accountBalance={this.state.accountBalance}/>) 
+    const CreditsComponent = () => (<Credits
+      credits={this.state.creditList}
+      balance={this.state.accountBalance}
+      updateBalance={this.updateBalance}
+      updateCreditList={this.updateCreditList}
+      accountBalance={this.state.accountBalance}/>) 
     const DebitsComponent = () => (<Debits debits={this.state.debitList} accountBalance={this.state.accountBalance}/>) 
 
     // Important: Include the "basename" in Router, which is needed for deploying the React app to GitHub Pages

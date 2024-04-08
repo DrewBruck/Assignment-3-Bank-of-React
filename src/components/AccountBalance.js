@@ -55,7 +55,7 @@ class AccountBalance extends Component {
 
     return (
       <div>
-        Balance: ${balance}
+        <h3>Account Balance: ${balance}</h3>
       </div>
     );
   }
