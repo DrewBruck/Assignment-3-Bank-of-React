@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/bank-of-react-starter-code/static/css/main.bd95d79f.css",
+    "main.js": "/bank-of-react-starter-code/static/js/main.67318998.js",
+    "static/js/453.d81f9453.chunk.js": "/bank-of-react-starter-code/static/js/453.d81f9453.chunk.js",
+    "index.html": "/bank-of-react-starter-code/index.html",
+    "main.bd95d79f.css.map": "/bank-of-react-starter-code/static/css/main.bd95d79f.css.map",
+    "main.67318998.js.map": "/bank-of-react-starter-code/static/js/main.67318998.js.map",
+    "453.d81f9453.chunk.js.map": "/bank-of-react-starter-code/static/js/453.d81f9453.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bd95d79f.css",
+    "static/js/main.67318998.js"
+  ]
+}
